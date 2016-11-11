@@ -3,6 +3,7 @@
 node {
   stage 'Build and Test'
   checkout scm
+  mvn 'versions:set -Dversion=${env.version}'
   mvn 'clean install xldeploy:import'
 }
 
