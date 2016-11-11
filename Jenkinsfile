@@ -1,8 +1,12 @@
 #!groovy
 
-node ('master'){
+node {
   stage 'Build and Test'
   env.PATH = "${tool 'Maven 3'}/bin:${env.PATH}"
   checkout scm
-  sh 'mvn clean install xldeploy:import'
+  mvn 'clean install xldeploy:import'
+}
+
+def mvn(args) {
+	sh "${tool 'Maven 3.x'}/bin/mvn ${args}"
 }
