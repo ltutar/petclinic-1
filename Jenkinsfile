@@ -1,8 +1,11 @@
 #!groovy
 
+properties([parameters([string(defaultValue: 'version', description: '', name: 'VERSION')]), pipelineTriggers([])])
+
 node {
   stage 'Build and Test'
-  checkout scm
+  build job: 'build', parameters: [[$class: 'StringParameterValue', name: 'VERSION', value: version]]  
+  checkout scm  
   mvn 'versions:set -DnewVersion=' + env.VERSION
   mvn 'clean install xldeploy:import'
 }
