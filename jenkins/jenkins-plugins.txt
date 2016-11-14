@@ -1,1 +1,1 @@
-job-dsl git cloudbees-folder credentials credentials-binding ansicolor timestamper workflow-aggregator docker-workflow:1.9.1 github-branch-source
+job-dsl git cloudbees-folder credentials credentials-binding ansicolor timestamper workflow-aggregator docker-workflow:1.9 github-branch-source
