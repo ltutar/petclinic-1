@@ -1,9 +1,10 @@
 #!groovy
 
 node {
-  stage 'Build and Test'
-  properties([[$class: 'ParametersDefinitionProperty',
+	stage('Build') {
+      properties([[$class: 'ParametersDefinitionProperty',
 	  parameterDefinitions: [[$class: 'StringParameterDefinition', defaultValue: '', description: 'Version from XLR', name : 'version']]]])	
+	}
   checkout scm  
   mvn 'versions:set -DnewVersion=' + version
   mvn 'clean install xldeploy:import'
