@@ -1,21 +1,21 @@
 #!groovy
 
 node {
-    properties([
-            parameters([
-                    string(defaultValue: 'bla', 
-			   description: 'Version from XLR', 
-			   name : 'version')
-            ]),
-            pipelineTriggers([])
-    ])
+    //properties([
+    //        parameters([
+    //                string(defaultValue: 'bla', 
+//			   description: 'Version from XLR', 
+//			   name : 'version')
+//            ]),
+//            pipelineTriggers([])
+//    ])
 	stage('Build and import') {
-		withEnv(["version=${version}"]) {
+		//withEnv(["version=${version}"]) {
 			checkout scm  
-			mvn 'versions:set -DnewVersion=' + version
+			mvn 'versions:set -DnewVersion=1.3.55'
 			mvn 'clean install'
 			mvn 'xldeploy:import'
-		}
+		//}
 	}
 }
 
