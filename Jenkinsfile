@@ -6,7 +6,7 @@ node {
 	  parameterDefinitions: [[$class: 'StringParameterDefinition', defaultValue: 'bla', description: 'Version from XLR', name : 'version']]]])	
 	}
   checkout scm  
-  mvn 'versions:set -DnewVersion=' + env.version
+  mvn 'versions:set -DnewVersion=' + version
   mvn 'clean install xldeploy:import'
 }
 
