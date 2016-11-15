@@ -13,8 +13,7 @@ node {
 		withEnv(["version=${version}"]) {
 			checkout scm  
 			mvn 'versions:set -DnewVersion=' + version
-			mvn 'clean install'
-			mvn 'xldeploy:import'
+			mvn 'clean install xldeploy:import'
 		}
 	}
 }
