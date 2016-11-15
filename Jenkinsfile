@@ -1,13 +1,21 @@
 #!groovy
 
-node {
-	stage('Build') {
-      properties([[$class: 'ParametersDefinitionProperty',
-	  parameterDefinitions: [[$class: 'StringParameterDefinition', defaultValue: 'bla', description: 'Version from XLR', name : 'version']]]])	
-	}
+node('!(master)') {
+    properties([
+            parameters([
+                    string(defaultValue: 'bla', 
+			   description: 'Version from XLR', 
+			   name : 'version')
+            ]),
+            pipelineTriggers([])
+    ])
+stage('Build') {
+      withEnv(["version=${version}"]) {
   checkout scm  
   mvn 'versions:set -DnewVersion=' + version
   mvn 'clean install xldeploy:import'
+      }
+}
 }
 
 def mvn(args) {
