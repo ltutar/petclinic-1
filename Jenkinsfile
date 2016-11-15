@@ -9,13 +9,13 @@ node('!(master)') {
             ]),
             pipelineTriggers([])
     ])
-stage('Build') {
-      withEnv(["version=${version}"]) {
-  checkout scm  
-  mvn 'versions:set -DnewVersion=' + version
-  mvn 'clean install xldeploy:import'
-      }
-}
+	stage('Build') {
+		withEnv(["version=${version}"]) {
+			checkout scm  
+			mvn 'versions:set -DnewVersion=' + version
+			mvn 'clean install xldeploy:import'
+		}
+	}
 }
 
 def mvn(args) {
