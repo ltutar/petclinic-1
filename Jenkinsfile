@@ -1,6 +1,6 @@
 #!groovy
 
-node('!(master)') {
+node {
     properties([
             parameters([
                     string(defaultValue: 'bla', 
