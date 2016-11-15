@@ -2,10 +2,8 @@
 
 node {
   stage 'Build and Test'
-  properties([[$class: 'ParametersDefinitionProperty',
-	  parameterDefinitions: [[$class: 'StringParameterDefinition', defaultValue: '', description: 'Version from XLR', name : 'version']]]])	
   checkout scm  
-  mvn 'versions:set -DnewVersion=' + version
+  mvn 'versions:set -DnewVersion=1.1.1'
   mvn 'clean install xldeploy:import'
 }
 
