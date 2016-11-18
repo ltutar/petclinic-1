@@ -8,7 +8,7 @@ node {
             pipelineTriggers([])
     ])
     stage('Build and import') {
-        docker.image('maven:3.3.9-jdk-8').inside {
+        docker.image('maven:3.3.9-jdk-8').inside('--volumes-from maven-config') {
             withEnv(["version=${version}"]) {
                 checkout scm  
                 mvn 'versions:set -DnewVersion=' + version
