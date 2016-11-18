@@ -18,7 +18,7 @@
 					<environmentId>Environments/hdw/t/WAAACrud.war</environmentId>
 					<applicationName>petclinic.war</applicationName>
 					<generateDeployedOnUpgrade>true</generateDeployedOnUpgrade>
-					<serverAddress>xld-service</serverAddress>
+					<serverAddress>172.17.0.2</serverAddress>
 					<secured>false</secured>
 					<port>4516</port>
 					<username>admin</username>
