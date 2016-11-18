@@ -1,6 +1,6 @@
 #!groovy
 
-node {
+node('docker') {
     properties([
             parameters([
                     string(defaultValue: 'bla', 
@@ -19,5 +19,5 @@ node {
 }
 
 def mvn(args) {
-	sh "${tool 'Maven 3'}/bin/mvn ${args}"
+	sh "mvn ${args}"
 }
