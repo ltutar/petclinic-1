@@ -7,13 +7,6 @@ import org.jenkinsci.plugins.workflow.multibranch.*
 
 def instance = Jenkins.getInstance()
 
-println "--> set Maven installation"
-def extList = instance.getExtensionList(hudson.tasks.Maven.DescriptorImpl.class)[0];
-def tmpList = (extList.installations as List);
-tmpList.add(new hudson.tasks.Maven.MavenInstallation("Maven 3", "/opt/mvn", []));
-extList.installations = tmpList
-extList.save()
-
 println "--> set Multi Branch Project"
 
 WorkflowMultiBranchProject mp = instance.createProject(WorkflowMultiBranchProject.class, "petclinic");
