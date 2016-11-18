@@ -8,7 +8,7 @@ node {
             pipelineTriggers([])
     ])
     stage('Build and import') {
-        docker.image('maven:3.3.9-jdk-8').inside('--volumes-from r-deploymentpipeline-maven-data-1-11033fcf','-l io.rancher.container.network=true') {
+        docker.image('maven:3.3.9-jdk-8').inside('-l io.rancher.container.network=true') {
             withEnv(["version=${version}"]) {
                 checkout scm  
                 mvn 'versions:set -DnewVersion=' + version
