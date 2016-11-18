@@ -1,6 +1,6 @@
 #!groovy
 
-node('docker') {
+node {
     properties([
             parameters([
                     string(defaultValue: 'bla', 
@@ -9,12 +9,14 @@ node('docker') {
             ]),
             pipelineTriggers([])
     ])
+	docker.image('maven:3.3.3-jdk-8').inside {
 	stage('Build and import') {
-		withEnv(["version=${version}"]) {
+		withEnv(["version=1.1.2"]) {
 			checkout scm  
 			mvn 'versions:set -DnewVersion=' + version
 			mvn 'clean install xldeploy:import'
 		}
+	}
 	}
 }
 
