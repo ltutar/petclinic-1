@@ -1,19 +1,9 @@
 node {
-    properties([
-            parameters([
-                    string(defaultValue: 'bla', 
-			   description: 'Version from XLR', 
-			   name : 'version')
-            ]),
-            pipelineTriggers([])
-    ])
     stage('Build and import') {
         docker.image('maven:3.3.9-jdk-8').inside {
-            withEnv(["version=${version}"]) {
                 checkout scm  
-                mvn 'versions:set -DnewVersion=' + version
+                mvn 'versions:set -DnewVersion=1.1.1'
                 mvn 'clean install xldeploy:import'
-            }
         }
 	}
 }
